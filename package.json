@@ -1,0 +1,23 @@
+{
+  "name": "market-place",
+  "version": "1.0.0",
+  "description": "The Market Place for self employed",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arulbenito/market-place.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arulbenito/market-place/issues"
+  },
+  "homepage": "https://github.com/arulbenito/market-place#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
