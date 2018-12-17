@@ -1,0 +1,26 @@
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+.search{
+  margin: 20px 0px;
+}
+.search_form {
+  max-width: 900px;
+  margin: auto;
+  display: block;
+  text-align: center;
+}
+.search_input {
+  box-sizing: border-box;
+  border: none;
+  background: #e5f3f5;
+  padding: 15px;
+  width:60%;
+}
+.search_submit{
+  box-sizing: border-box;
+  border: none;
+  background: #00d4f3;
+  padding: 15px;
+  width:20%;
+}
