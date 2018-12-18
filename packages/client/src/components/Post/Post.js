@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import './Post.css';
 
 export default class Post extends Component {
-  static propTypes = {
-    logoSrc: PropTypes.string
-  };
   render() {
     return (
       <div className="Post">

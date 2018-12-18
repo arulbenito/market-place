@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import Project from '../Project/Project'
 import './Search.css';
 
 export default class Search extends Component {
-  static propTypes = {
-    logoSrc: PropTypes.string
-  };
   state  = {
     projectList: []
   }
@@ -25,10 +21,7 @@ export default class Search extends Component {
           <input className="search_input" type="text" name="projectName" placeholder="Search.."></input>
           <button className="search_submit">Search</button>
         </form>
-        { this.state.projectList.map((project)=>{
-          return (<Project className='project' id='project' projectOject={project}></Project>
-            )
-        })}
+        <Project className='project' id='project' projects={this.state.projectList}></Project>
       </div>
     );
   }
