@@ -3,40 +3,32 @@ import './Pagination.css';
 import _ from 'lodash';
 
 
-export default class Pagination extends Component {
+const Pagination = (props) =>{
   
-  constructor(props){
-    super(props)
-    console.log('props.itemsCount' + props.itemsCount);
-    console.log('props.pageSize' + this.props.pageSize);
+  const pageCount = Math.ceil(props.itemsCount/props.pageSize);
+  const pages = _.range(1,pageCount+1);
 
-    this.pageCount = Math.ceil(props.itemsCount/this.props.pageSize);
-    this.pages = _.range(1,this.pageCount+1);
-    console.log('this.pageCount' + this.pageCount);
-    console.log('this.pages' + this.pages);
-
+  if (pageCount === 1){
+    return null
   }
 
-  render() {
-    if (this.pageCount === 1){
-      return null
-    }
-    return (
-      <div id={this.props.id} className={this.props.className}>
-        <nav>
-          <ul className="pagination">
-            {this.pages.map(page =>{
-              return(
-                <li className={page === this.props.currentPage ? 'page-item active' :'page-item '}>
-                <a className="page-link" onClick={()=>this.props.onPageChange(page)}>{page}</a>
-              </li>
-              )
-            })}
-          </ul>
-          
-        </nav>
-      </div>
-    );
-  }
+  return (
+    <div id={props.id} className={props.className}>
+      <nav>
+        <ul className="pagination">
+          {pages.map(page =>{
+            return(
+              <li className={page === props.currentPage ? 'page-item active' :'page-item '}>
+              <a className="page-link" onClick={()=>props.onPageChange(page)}>{page}</a>
+            </li>
+            )
+          })}
+        </ul>
+        
+      </nav>
+    </div>
+  );
 }
+
+export default Pagination;
 

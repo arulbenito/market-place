@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Project from '../Project/Project'
+import Projects from '../Projects/Projects'
 import './Search.css';
 
 export default class Search extends Component {
@@ -12,7 +12,6 @@ export default class Search extends Component {
     const api_call = await fetch(`/api/search?keyword=${searchString}`);
     const data = await api_call.json();
     this.setState({ projectList:data.projects });
-    console.log(this.state.projectList, searchString);
   }
   render() {
     return (
@@ -21,7 +20,7 @@ export default class Search extends Component {
           <input className="search_input" type="text" name="projectName" placeholder="Search.."></input>
           <button className="search_submit">Search</button>
         </form>
-        <Project className='project' id='project' projects={this.state.projectList}></Project>
+        <Projects className='projects' id='projects' projects={this.state.projectList} ></Projects>
       </div>
     );
   }

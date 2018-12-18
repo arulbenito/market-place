@@ -1,9 +1,12 @@
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
-.project{
+.projects{
   margin: 20px auto;
   width: 900px;
+}
+.card{
+  margin: 20px 0px;
 }
 .card-header{
   background: #e7f2f3;
