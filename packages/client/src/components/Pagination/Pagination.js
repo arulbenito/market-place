@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Pagination.css';
 import _ from 'lodash';
 
@@ -18,8 +18,8 @@ const Pagination = (props) =>{
         <ul className="pagination">
           {pages.map(page =>{
             return(
-              <li className={page === props.currentPage ? 'page-item active' :'page-item '}>
-              <a className="page-link" onClick={()=>props.onPageChange(page)}>{page}</a>
+              <li key = {page} className={page === props.currentPage ? 'page-item active' :'page-item '}>
+              <button className="page-link" onClick={()=>props.onPageChange(page)}>{page}</button>
             </li>
             )
           })}

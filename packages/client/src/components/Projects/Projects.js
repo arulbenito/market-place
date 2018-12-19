@@ -37,7 +37,7 @@ export default class Projects extends Component {
       <div id={this.props.id} className={this.props.className}>
       <p>showing {projectCount} projects</p> 
         {projectsPerPage.map(project=>(
-          <div className='card' key={this.props.projects.ProjectId}>
+          <div className='card' key = {this.props.projects.ProjectId}>
             <div className='card-header'><a href={`/project/${project.ProjectId}`} >{project.ProjectTitle}</a></div>
             <div className='card-body'>
             
@@ -53,7 +53,7 @@ export default class Projects extends Component {
               </div>
 
             </div>
-            <div class="card-footer text-muted">
+            <div className="card-footer text-muted">
             <span className='card-text'>Posted By {project.ProjectPostedBy}</span> 
             </div>
           </div>

@@ -1,7 +1,3 @@
-const express = require ('express');
-const app = express();
-
-const isInLambda = !!process.env.LAMBDA_TASK_ROOT;
 
 const projectList = [
     {   ProjectId:1,
@@ -88,42 +84,30 @@ const projectList = [
         ProjectTags: "editing publishing printing books",
         ProjectLabel: "" 
     }
-    ]
+]
 
-app.get('/', (req,res) => {
-    res.send('Hello World 1')
-});
+export function getProjects(){
+    return projectList;
+}
 
-app.get('/api/search',(req,res)=>{
-    let keyword = req.query.keyword || '';
+export function searchProjects(keyword){
     if (keyword){
         let filteredProjectList = projectList.filter((project) =>{
             return (project.ProjectTitle.toLowerCase().includes(keyword.toLowerCase()) ||
             project.ProjectLabel.toLowerCase().includes(keyword.toLowerCase()) ||
             project.ProjectTags.toLowerCase().includes(keyword.toLowerCase()) )
         })
-        res.json({projects:filteredProjectList})
+        return filteredProjectList;
     } else{
-        res.json({projects:projectList})
+        return projectList;
     }
-});
+}
 
-app.get('/api/search/:id',(req,res)=>{
-    const project = projectList.find( project => project.ProjectId === parseInt(req.params.id));
-    if (!project){
-        res.status(404).send('Project with the given Id does not exist' + parseInt(req.params.id))
-    }else{
-        res.send(project);
+export function getProject(id){
+    if (id) {
+        const project  = projectList.find(project => project.ProjectId === parseInt(id));;
+        return project;
+    } else{
+        return {};
     }
-});
-
-
-if (isInLambda){
-    const serverlessExpress = require('aws-serverless-express');
-    const server = serverlessExpress.createServer(app);
-    exports.main = (event,context) => serverlessExpress.proxy(server,event,context)
-}else{
-    app.listen(5000,()=>{
-        console.log("Listening on Port 5000");    
-    })
 }

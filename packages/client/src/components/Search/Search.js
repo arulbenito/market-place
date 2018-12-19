@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Projects from '../Projects/Projects'
+import {searchProjects} from '../../services/projectService'
 import './Search.css';
 
 export default class Search extends Component {
@@ -9,9 +10,11 @@ export default class Search extends Component {
   getProjects = async (e) => {
     e.preventDefault();
     const searchString = e.target.projectName.value;
+    /*
     const api_call = await fetch(`/api/search?keyword=${searchString}`);
-    const data = await api_call.json();
-    this.setState({ projectList:data.projects });
+    const data = await api_call.json();*/
+    const data = searchProjects(searchString);
+    this.setState({ projectList:data });
   }
   render() {
     return (

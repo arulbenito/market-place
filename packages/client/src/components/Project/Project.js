@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import {getProject} from '../../services/projectService'
+
 import moment from 'moment'
 
 import './Project.css';
@@ -9,8 +11,9 @@ export default class Project extends Component {
   }
   getProject = async () => {
     const id = this.props.match.params.id;
-    const api_call = await fetch(`/api/search/${id}`);
-    const data = await api_call.json();
+    /*const api_call = await fetch(`/api/search/${id}`);
+    const data = await api_call.json();*/
+    const data = getProject(id);
     this.setState({ project:data });
     console.log('id'+id)
   }
