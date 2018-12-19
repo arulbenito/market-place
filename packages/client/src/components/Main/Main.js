@@ -11,13 +11,13 @@ export default class Main extends Component {
     render(){
         return(    
         <Switch>
+            <Route path="/" component={Search} exact />
             <Route path="/search" component={Search} />
             <Route path="/post" component={ProjectForm} />
             <Route path="/project/:id" component={Project} />
             <Route path="/login" component={LoginForm} />
             <Route path="/register" component={RegisterForm} />
             <Route path="/logout" component={Logout} />
-
         </Switch>
         );
     }

@@ -5,9 +5,12 @@ import './Search.css';
 
 export default class Search extends Component {
   state  = {
-    projectList: []
+    projectList: [],
+    launch: true
   }
+ 
   getProjects = async (e) => {
+    this.state.launch = false;
     e.preventDefault();
     const searchString = e.target.projectName.value;
     /*
@@ -23,7 +26,7 @@ export default class Search extends Component {
           <input className="search_input" type="text" name="projectName" placeholder="Search.."></input>
           <button className="search_submit">Search</button>
         </form>
-        <Projects className='projects' id='projects' projects={this.state.projectList} ></Projects>
+        <Projects className='projects' id='projects' projects={this.state.projectList} launch={this.state.launch} ></Projects>
       </div>
     );
   }

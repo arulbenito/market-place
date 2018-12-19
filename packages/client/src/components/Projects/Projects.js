@@ -29,13 +29,13 @@ export default class Projects extends Component {
 
     const projectCount = this.props.projects.length;
     console.log("projectCount" + projectCount);
-    if (projectCount===0){
+    if (projectCount===0 && !this.props.launch){
       return (<p> There are no projects available at the moment..</p>);
     }
     const projectsPerPage = this.paginate();
     return (
       <div id={this.props.id} className={this.props.className}>
-      <p>showing {projectCount} projects</p> 
+      <p>{!this.props.launch && 'showing ' + projectCount + ' projects'}</p> 
         {projectsPerPage.map(project=>(
           <div className='card' key = {this.props.projects.ProjectId}>
             <div className='card-header'><a href={`/project/${project.ProjectId}`} >{project.ProjectTitle}</a></div>

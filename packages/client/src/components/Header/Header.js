@@ -7,7 +7,9 @@ export default class Header extends Component {
     return (
       <header className="header">
         <div className="header-content">
-            <img className="header-logo" src={this.props.logoSrc}  alt="logo" />
+            <a href='/'>
+              <img className="header-logo" src={this.props.logoSrc}  alt="logo" />
+            </a>
             <h5>the market place</h5>
             <Navbar className="header-nav" user={this.props.user}></Navbar>
         </div>
