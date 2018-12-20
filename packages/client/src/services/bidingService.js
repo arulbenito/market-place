@@ -23,10 +23,22 @@ const bidList = [{
     price: '60'
 }]
 
+function getBidList(){
+    const localBidList = JSON.parse(localStorage.getItem('bidList'));
+    let data = [];
+    if (localBidList){
+        data = [ ...localBidList];
+    } else{
+        data = [ ...bidList];
+    }
+    return data
+}
+
 
 export function getPrice(proId) {
+    let data = getBidList();
     if (proId) {
-        let filteredBidList = bidList.filter((bid) => {
+        let filteredBidList = data.filter((bid) => {
             return (bid.projectId === parseInt(proId))
         })
         if (filteredBidList.length > 0) {
@@ -41,8 +53,10 @@ export function getPrice(proId) {
 }
 
 export function getPriceObj(proId) {
+    let data = getBidList();
+
     if (proId) {
-        let filteredBidList = bidList.filter((bid) => {
+        let filteredBidList = data.filter((bid) => {
             return (bid.projectId === parseInt(proId))
         })
         if (filteredBidList.length > 0) {
@@ -61,13 +75,16 @@ export function getPriceObj(proId) {
 }
 
 export function addBid(price, userId, projectId) {
+    let data = getBidList();
+
     if (price && userId && projectId) {
         const bid = {}
-        bid.id = bidList.length + 1;
+        bid.id = data.length + 1;
         bid.price = price;
         bid.userId = userId;
         bid.projectId = projectId;
-        bidList.push(bid)
+        data.push(bid)
+        localStorage.setItem('bidList', JSON.stringify(data));
         return bid;
     } else {
         return null;

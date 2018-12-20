@@ -1,15 +1,6 @@
 
-@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+@import '../../styles/shared.scss';
 
-.search{
-  margin: 20px 0px;
-}
-.search-form {
-  max-width: 900px;
-  margin: auto;
-  display: block;
-  text-align: center;
-}
 .search-input {
   box-sizing: border-box;
   border: none;

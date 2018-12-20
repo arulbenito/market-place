@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Projects from '../Projects/Projects'
 import { searchProjects } from '../../services/projectService'
-import './Search.css';
+import './Search.scss';
 
 export default class Search extends Component {
   state = {
@@ -28,8 +28,8 @@ export default class Search extends Component {
 
   render() {
     return (
-      <div className="search">
-        <form className="search-form" onSubmit={this.getProjects}>
+      <div className="search page">
+        <form className="search-form form" onSubmit={this.getProjects}>
           <input className="search-input" type="text" name="projectName" placeholder="Search.."></input>
           <button className="search-submit">Search</button>
         </form>

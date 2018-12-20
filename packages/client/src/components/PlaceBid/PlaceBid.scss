@@ -1,10 +1,4 @@
-
-@import url(https://fonts.googleapis.com/css?family=Open+Sans);
-
-.project{
-  margin: 20px auto;
-  width: 900px;
-}
+@import '../../styles/shared.scss';
 .card-header{
   background: #e7f2f3;
   color: #262c35;
@@ -19,4 +13,10 @@
 }
 .project-bid{
   margin-left: auto;
+}
+.card-text{
+  margin:10px 0px;
+}
+.price{
+  width:150px;
 }

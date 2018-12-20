@@ -5,7 +5,7 @@ import Form from '../Form/Form'
 import Joi from 'joi-browser'
 import { getProjectDetails } from '../../utils/utils'
 import { getQuote } from '../../utils/utils'
-import './PlaceBid.css';
+import './PlaceBid.scss';
 
 export default class PlaceBid extends Form {
   state = {
@@ -39,7 +39,7 @@ export default class PlaceBid extends Form {
       return (<p className="projectForm_message"> Your Bid successfully placed!!!!</p>);
     }
     return (
-      <div className='card placeBid' key={this.state.project.ProjectId}>
+      <div className='card placeBid page' key={this.state.project.ProjectId}>
         {(!this.props.user) && (<button className="btn btn-primary project-bid" onClick={this.loginUser}>Login/Sign Up to post a project</button>)}
         {(this.props.user) &&
           (<form className="form-signin" onSubmit={this.handleSubmit}>

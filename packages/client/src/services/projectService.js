@@ -93,26 +93,39 @@ const projectList = [
     }
 ]
 
+function getProjectList (){
+    const localProjectList = JSON.parse(localStorage.getItem('projectList'));
+    let data = [];
+    if (localProjectList){
+        data = [ ...localProjectList];
+    } else{
+        data = [ ...projectList];
+    }
+    return data
+}
+
 export function getProjects() {
-    return projectList;
+    return getProjectList();
 }
 
 export function searchProjects(keyword) {
+    let data = getProjectList();
     if (keyword) {
-        let filteredProjectList = projectList.filter((project) => {
+        let filteredProjectList = data.filter((project) => {
             return (project.ProjectTitle.toLowerCase().includes(keyword.toLowerCase()) ||
                 project.ProjectLabel.toLowerCase().includes(keyword.toLowerCase()) ||
                 project.ProjectTags.toLowerCase().includes(keyword.toLowerCase()))
         })
         return filteredProjectList;
     } else {
-        return projectList;
+        return data;
     }
 }
 
 export function searchWiningProjects(user) {
+    let data = getProjectList();
     if (user) {
-        let filteredProjectList = projectList.filter((project) => {
+        let filteredProjectList = data.filter((project) => {
             return (getPriceObj(project.ProjectId).userId == user.id)
         })
         return filteredProjectList;
@@ -122,8 +135,9 @@ export function searchWiningProjects(user) {
 }
 
 export function getProject(id) {
+    let data = getProjectList();
     if (id) {
-        const project = projectList.find(project => project.ProjectId === parseInt(id));;
+        const project = data.find(project => project.ProjectId === parseInt(id));;
         return project;
     } else {
         return {};
@@ -131,8 +145,9 @@ export function getProject(id) {
 }
 
 export function addProject(project, user) {
+    let data = getProjectList();
     const projectObj = {};
-    projectObj.ProjectId = projectList.length + 1;
+    projectObj.ProjectId = data.length + 1;
     projectObj.ProjectTitle = project.title;
     projectObj.ProjectDescription = project.description;
     projectObj.ProjectBidType = project.bidType;
@@ -141,5 +156,6 @@ export function addProject(project, user) {
     projectObj.ProjectPostedBy = user.id;
     projectObj.category = project.category;
     projectObj.ProjectTags = project.tags;
-    projectList.push(projectObj)
+    data.push(projectObj)
+    localStorage.setItem('projectList', JSON.stringify(data));
 }

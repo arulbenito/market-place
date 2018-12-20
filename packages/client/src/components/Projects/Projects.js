@@ -6,7 +6,7 @@ import { getUserName } from '../../utils/utils'
 
 import moment from 'moment'
 
-import './Projects.css';
+import './Projects.scss';
 import _ from 'lodash';
 
 export default class Projects extends Component {
@@ -33,13 +33,12 @@ export default class Projects extends Component {
     }
     const projectsPerPage = this.paginate();
     return (
-      <div id={this.props.id} className={this.props.className}>
+      <div id={this.props.id} className={this.props.className + 'page'}>
         <p>{!this.props.launch && 'showing ' + projectCount + ' projects'}</p>
         {projectsPerPage.map(project => (
           <div className='card' key={project.ProjectId} id={project.ProjectId}>
             <div className='card-header'><a href={`/project/${project.ProjectId}`} >{project.ProjectTitle}</a></div>
             <div className='card-body'>
-
               <span className='card-text'>{project.ProjectBidType}</span> |
               <span className='card-text'>{getQuote(project.ProjectId)}</span> |
               <span className='card-text'>Posted {moment(project.ProjectPostedon).fromNow()}</span> |
@@ -50,7 +49,6 @@ export default class Projects extends Component {
                 <span className='card-text text-muted'>{project.ProjectTags ? 'Tags: ' + project.ProjectTags : ''}</span>
                 <span className='card-text text-muted'>{project.ProjectLabels ? 'Labels: ' + project.ProjectLabels : ''}</span>
               </div>
-
             </div>
             <div className="card-footer text-muted">
               <span className='card-text'>Posted By {getUserName(project.ProjectPostedBy)}</span>

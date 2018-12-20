@@ -10,7 +10,7 @@ import { getCurrentUser } from '../../utils/utils'
 
 import Joi from 'joi-browser'
 
-import './ProjectForm.css';
+import './ProjectForm.scss';
 
 export default class ProjectForm extends Form {
 
@@ -57,10 +57,10 @@ export default class ProjectForm extends Form {
       return (<p className="projectForm_message"> Your project was posted successfully!!!!</p>);
     }
     return (
-      <div className="LoginForm">
+      <div className="ProjectForm page">
         {(!this.props.user) && (<button className="btn btn-primary project-bid" onClick={this.loginUser}>Login/Sign Up to post a project</button>)}
         {(this.props.user) &&
-          (<form className="form-signin" onSubmit={this.handleSubmit}>
+          (<form className="form-signin form" onSubmit={this.handleSubmit}>
             <h1 className="h3 mb-3 font-weight-normal">Post a Project</h1>
             <Input label="Title" name='title' value={this.state.data.title} type="text" onChange={this.handleChange} focus="true" error={this.state.errors.title}></Input>
             <TextArea label="Description" name='description' rows='7' value={this.state.data.password} type="textarea" onChange={this.handleChange} error={this.state.errors.description}></TextArea>

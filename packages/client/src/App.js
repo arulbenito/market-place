@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './svg/getDone.svg';
 import Header from './components/Header/Header';
 import Main from "./components/Main/Main"
-import './App.css';
+import './App.scss';
 
 class App extends Component {
   state ={}

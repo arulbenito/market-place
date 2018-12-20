@@ -34,49 +34,78 @@ const userList = [{
     name: 'Pat'
 }]
 
+function getUserList (){
+    const localUserList = JSON.parse(localStorage.getItem('userList'));
+    let data = [];
+    if (localUserList){
+        data = [ ...localUserList];
+    } else{
+        data = [ ...userList];
+    }
+    return data
+}
+
 
 export function getUser(id) {
-    if (id) {
-        const user = userList.find(user => user.id === parseInt(id));;
-        return user;
-    } else {
-        return {};
+    let data = getUserList();
+    if (data){
+        if (id) {
+            const user = data.find(user => user.id === parseInt(id));;
+            return user;
+        } else {
+            return {};
+        }
     }
 }
 
 export function getName(id) {
-    if (id) {
-        const user = userList.find(user => user.id === parseInt(id));;
-        return user.name;
-    } else {
-        return '';
+    let data = getUserList();
+    console.log(data);
+    if (data){
+        if (id) {
+            const user = data.find(user => user.id === parseInt(id));;
+            return user.name;
+        } else {
+            return '';
+        }
     }
 }
 
 export function authUser(username, password) {
-    let found = userList.some(function (userObj) {
-        return userObj.username === username && userObj.password === password;
-    });
-    var user = userList.filter(user => {
-        return user.username === username
-    })
-    if (found) {
-        return window.btoa(JSON.stringify(user[0]));
-    } else {
-        return 'denied'
+
+    let data = getUserList();
+
+    if (data){
+        let found = data.some(function (userObj) {
+            return userObj.username === username && userObj.password === password;
+        });
+        var user = data.filter(user => {
+            return user.username === username
+        })
+        if (found) {
+            return window.btoa(JSON.stringify(user[0]));
+        } else {
+            return 'denied'
+        }
     }
 }
 
 export function addUser(user) {
 
-    let found = userList.some(function (userObj) {
-        return userObj.username === user.username;
-    });
-    if (!found) {
-        user.id = userList.length + 1;
-        userList.push(user)
-        return window.btoa(JSON.stringify(user));
-    } else {
-        return null;
+    let data = getUserList();
+
+    if (data){
+        let found = data.some(function (userObj) {
+            return userObj.username === user.username;
+        });
+        if (!found) {
+            user.id = data.length + 1;
+            data.push(user)
+            localStorage.setItem('userList', JSON.stringify(data));
+            return window.btoa(JSON.stringify(user));
+        } else {
+            return null;
+        }
     }
+
 }

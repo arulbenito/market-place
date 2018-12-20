@@ -5,7 +5,7 @@ import { getUserName } from '../../utils/utils'
 
 import moment from 'moment'
 
-import './Project.css';
+import './Project.scss';
 
 export default class Project extends Component {
   state = {
@@ -30,7 +30,7 @@ export default class Project extends Component {
   }
   render() {
     return (
-      <div className='card project' key={this.state.project.ProjectId}>
+      <div className='card project page' key={this.state.project.ProjectId}>
         <div className='card-header'>{this.state.project.ProjectTitle}
           {(this.props.user) && (<button className="btn btn-primary project-bid" onClick={this.placeBid}>Place a Bid</button>)}
           {(!this.props.user) && (<button className="btn btn-primary project-bid" onClick={this.loginUser}>Login/Sign Up to Place a bid</button>)}
