@@ -3,8 +3,8 @@ import Input from '../Input/Input'
 import TextArea from '../Input/TextArea'
 import Select from '../Input/Select'
 import Form from '../Form/Form'
-import {addProject} from '../../services/projectService'
-import {getCurrentUser} from '../../utils/utils'
+import { addProject } from '../../services/projectService'
+import { getCurrentUser } from '../../utils/utils'
 
 
 
@@ -16,23 +16,21 @@ export default class ProjectForm extends Form {
 
   state = {
     data: {
-      title:'',
-      description:'',
-      bidType:'',
-      expiresOn:'',
-      category:'',
-      tags:''
+      title: '',
+      description: '',
+      bidType: '',
+      expiresOn: '',
+      category: '',
+      tags: ''
     },
-    errors:{
+    errors: {
     },
-    posted:false
+    posted: false
   }
 
-  doSubmit = async () =>{
-    console.log("submitted form")
+  doSubmit = async () => {
     const user = getCurrentUser();
     const status = await addProject(this.state.data, user);
-    console.log("submitted" + status)
     this.setState({ posted: true });
   }
 
@@ -45,34 +43,34 @@ export default class ProjectForm extends Form {
     tags: Joi.string().label('Tags'),
   }
 
-  bidOptions =[
-    {_id:1, name:"Hourly"},
-    {_id:2, name:"Fixed"}
+  bidOptions = [
+    { _id: 1, name: "Hourly" },
+    { _id: 2, name: "Fixed" }
   ]
 
-  loginUser =  () => {
+  loginUser = () => {
     window.location = '/register';
   }
 
-  render(){
-    if (this.state.posted){
+  render() {
+    if (this.state.posted) {
       return (<p className="projectForm_message"> Your project was posted successfully!!!!</p>);
     }
     return (
       <div className="LoginForm">
-        { (!this.props.user) && (<button className="btn btn-primary project-bid" onClick={this.loginUser}>Login/Sign Up to post a project</button>)}
-        { (this.props.user) && 
+        {(!this.props.user) && (<button className="btn btn-primary project-bid" onClick={this.loginUser}>Login/Sign Up to post a project</button>)}
+        {(this.props.user) &&
           (<form className="form-signin" onSubmit={this.handleSubmit}>
-          <h1 className="h3 mb-3 font-weight-normal">Post a Project</h1>
-          <Input label="Title" name ='title' value ={this.state.data.title} type="text" onChange={this.handleChange} focus="true" error = {this.state.errors.title}></Input>
-          <TextArea label="Description" name ='description' rows='7' value ={this.state.data.password} type="textarea" onChange={this.handleChange} error = {this.state.errors.description}></TextArea>
-          <Select label="Bid Type" name ='bidType' value ={this.state.data.bidType} onChange={this.handleChange}  options={this.bidOptions} error = {this.state.errors.bidType}></Select>
-          <Input label="Bid Close Date" name ='expiresOn' value ={this.state.data.expiresOn} onChange={this.handleChange} type="datetime-local" error = {this.state.errors.expiresOn}></Input>
-          <Input label="Category" name ='category' value ={this.state.data.category} type="text" onChange={this.handleChange}  error = {this.state.errors.category}></Input>
-          <Input label="Tags" name ='tags' value ={this.state.data.tags} type="text" onChange={this.handleChange}  error = {this.state.errors.tags}></Input>
-          <button disabled={this.validate()} className="btn btn-primary">Submit Project</button>
-        </form>)}
-      </div>  
-    ) 
+            <h1 className="h3 mb-3 font-weight-normal">Post a Project</h1>
+            <Input label="Title" name='title' value={this.state.data.title} type="text" onChange={this.handleChange} focus="true" error={this.state.errors.title}></Input>
+            <TextArea label="Description" name='description' rows='7' value={this.state.data.password} type="textarea" onChange={this.handleChange} error={this.state.errors.description}></TextArea>
+            <Select label="Bid Type" name='bidType' value={this.state.data.bidType} onChange={this.handleChange} options={this.bidOptions} error={this.state.errors.bidType}></Select>
+            <Input label="Bid Close Date" name='expiresOn' value={this.state.data.expiresOn} onChange={this.handleChange} type="datetime-local" error={this.state.errors.expiresOn}></Input>
+            <Input label="Category" name='category' value={this.state.data.category} type="text" onChange={this.handleChange} error={this.state.errors.category}></Input>
+            <Input label="Tags" name='tags' value={this.state.data.tags} type="text" onChange={this.handleChange} error={this.state.errors.tags}></Input>
+            <button disabled={this.validate()} className="btn btn-primary">Submit Project</button>
+          </form>)}
+      </div>
+    )
   }
 }

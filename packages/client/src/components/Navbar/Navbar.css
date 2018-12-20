@@ -1,34 +1,32 @@
 
-
 .Navbar {
   margin-left: auto;
 }
-.Navbar_NavLink{
+.Navbar-NavLink{
   display: inline-block;
   margin: 0 10px;
   font-size: 0.83em;
   text-decoration: none;
   color:white;
 }
-
-.Navbar_NavLink.Button_solid{
+.Navbar-NavLink.Button-solid{
   color: #FFF;
   background: #00d0f1;
   padding: 2px 7px;
   border-radius: 5px;
 }
-.Navbar_NavLink:hover, .Navbar_NavLink.Button_thin:hover{
+.Navbar-NavLink:hover, .Navbar-NavLink.Button-thin:hover{
   color:#00d0f1;
   transition: color 0.12s ease-out 0s;
 }
-.Navbar_NavLink.Button_thin{
+.Navbar-NavLink.Button-thin{
     background-color: transparent;
     border: 1px solid #FFF;
     color: #FFF;
     border-radius: 5px;
     padding: 2px 7px;
 }
-.Navbar_NavLink.Button_solid:hover{
+.Navbar-NavLink.Button-solid:hover{
   color:#FFF;
   transition: color 0.12s ease-out 0s;
 }

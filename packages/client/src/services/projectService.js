@@ -1,7 +1,8 @@
-import {getPriceObj} from '../services/bidingService'
+import { getPriceObj } from '../services/bidingService'
 
 const projectList = [
-    {   ProjectId:1,
+    {
+        ProjectId: 1,
         ProjectTitle: "Logo design required",
         ProjectDescription: "We need to have logo redesigned for our brand which is more modern",
         ProjectBidType: "Fixed",
@@ -15,7 +16,8 @@ const projectList = [
         ProjectTags: "",
         ProjectLabel: ""
     },
-    {   ProjectId:2,
+    {
+        ProjectId: 2,
         ProjectTitle: "Need to make our website responsive",
         ProjectDescription: "With less budget and quick turnaound we need to make our website responsive",
         ProjectBidType: "Fixed",
@@ -29,7 +31,8 @@ const projectList = [
         ProjectTags: "",
         ProjectLabel: ""
     },
-    {   ProjectId:3,
+    {
+        ProjectId: 3,
         ProjectTitle: "Data Entry",
         ProjectDescription: "Sequence of automated jobs and manual entry works to be done to port our data from old system to new system",
         ProjectBidType: "Hourly",
@@ -43,7 +46,8 @@ const projectList = [
         ProjectTags: "",
         ProjectLabel: ""
     },
-    {   ProjectId:4,
+    {
+        ProjectId: 4,
         ProjectTitle: "Web application development",
         ProjectDescription: "We need to built a web application for our unique business needs",
         ProjectBidType: "Fixed",
@@ -57,7 +61,8 @@ const projectList = [
         ProjectTags: "web cms authoring application developer",
         ProjectLabel: ""
     },
-    {   ProjectId:5,
+    {
+        ProjectId: 5,
         ProjectTitle: "Production Support",
         ProjectDescription: "We need to someone on routine to provide production support to our systems",
         ProjectBidType: "Hourly",
@@ -70,8 +75,9 @@ const projectList = [
         ProjectBidsReceived: "33",
         ProjectTags: "on-call, SDLC, Engneering",
         ProjectLabel: ""
-    },    
-    {   ProjectId:6,
+    },
+    {
+        ProjectId: 6,
         ProjectTitle: "Proof Reading",
         ProjectDescription: "Need proof reader of our editing unit",
         ProjectBidType: "Fixed",
@@ -83,60 +89,57 @@ const projectList = [
         ProjectSkills: "",
         ProjectBidsReceived: "23",
         ProjectTags: "editing publishing printing books",
-        ProjectLabel: "" 
+        ProjectLabel: ""
     }
 ]
 
-export function getProjects(){
+export function getProjects() {
     return projectList;
 }
 
-export function searchProjects(keyword){
-    if (keyword){
-        let filteredProjectList = projectList.filter((project) =>{
+export function searchProjects(keyword) {
+    if (keyword) {
+        let filteredProjectList = projectList.filter((project) => {
             return (project.ProjectTitle.toLowerCase().includes(keyword.toLowerCase()) ||
-            project.ProjectLabel.toLowerCase().includes(keyword.toLowerCase()) ||
-            project.ProjectTags.toLowerCase().includes(keyword.toLowerCase()) )
+                project.ProjectLabel.toLowerCase().includes(keyword.toLowerCase()) ||
+                project.ProjectTags.toLowerCase().includes(keyword.toLowerCase()))
         })
         return filteredProjectList;
-    } else{
+    } else {
         return projectList;
     }
 }
 
-export function searchWiningProjects(user){
-    console.log("user" + user.id)
-    if (user){
-        let filteredProjectList = projectList.filter((project) =>{
-            console.log('winner' + getPriceObj(project.ProjectId));
+export function searchWiningProjects(user) {
+    if (user) {
+        let filteredProjectList = projectList.filter((project) => {
             return (getPriceObj(project.ProjectId).userId == user.id)
         })
         return filteredProjectList;
-    } else{
+    } else {
         return [];
     }
 }
 
-export function getProject(id){
+export function getProject(id) {
     if (id) {
-        const project  = projectList.find(project => project.ProjectId === parseInt(id));;
+        const project = projectList.find(project => project.ProjectId === parseInt(id));;
         return project;
-    } else{
+    } else {
         return {};
     }
 }
 
-export function addProject(project , user){
+export function addProject(project, user) {
     const projectObj = {};
-    projectObj.ProjectId = projectList.length + 1 ;
+    projectObj.ProjectId = projectList.length + 1;
     projectObj.ProjectTitle = project.title;
     projectObj.ProjectDescription = project.description;
     projectObj.ProjectBidType = project.bidType;
     projectObj.ProjectBidEndDateTime = project.expiresOn;
-    projectObj.ProjectPostedon = new  Date();
+    projectObj.ProjectPostedon = new Date();
     projectObj.ProjectPostedBy = user.id;
     projectObj.category = project.category;
     projectObj.ProjectTags = project.tags;
     projectList.push(projectObj)
-    console.log(projectObj)
 }

@@ -8,14 +8,12 @@ export function getCurrentUser(){
     const authToken = localStorage.getItem('authToken');
     let userObj = window.atob(authToken)
     const user = JSON.parse(userObj);
-    console.log(user)
     return user;
 }
 
 export function getQuote(projectId) {
     const price = getPrice(projectId);
     if (price && price >0){
-      console.log(price);
       return price
     } else{
       return '--'
@@ -25,7 +23,6 @@ export function getQuote(projectId) {
 export function getUserName(userId) {
     const name = getName(userId);
     if (name && name.length >0){
-      console.log(name);
       return name
     } else{
       return '-'
@@ -38,4 +35,13 @@ export function getProjectDetails (projectId){
     //const id = this.props.id;
     const data = getProject(projectId);
     return data;
-  }
+}
+
+export function redirectUrl (path){
+    //this.props.history.push(path)
+    window.location = path;
+}
+
+export function changeRoute (path){
+    this.props.history.push(path)
+}

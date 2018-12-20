@@ -1,14 +1,15 @@
 import { Component } from 'react';
+import { redirectUrl } from '../../utils/utils'
+
 
 export default class Logout extends Component {
 
-  componentDidMount(){
+  componentDidMount() {
     localStorage.removeItem("authToken");
-    window.location = '/'
+    redirectUrl('/');
   }
-  render(){
+  render() {
     return null;
   }
-
 }
 
