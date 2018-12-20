@@ -20,3 +20,8 @@
   background-color: #08adca;
   border-color: #08adca;
 }
+.projectForm_message{
+  width: 60%;
+  max-width: 900px;
+  margin: 30px auto;
+}

@@ -43,6 +43,7 @@ export default class LoginForm extends Form {
       <div className="LoginForm">
         <form className="form-signin" onSubmit={this.handleSubmit}>
         <h1 className="h3 mb-3 font-weight-normal">Login</h1>
+        <h6 className="h6 mb-3 font-weight-normal">Don't have an account?<a href='/register'> Sign up now</a> </h6>
           <Input label="Email" name ='username' value ={this.state.data.username} type="text" onChange={this.handleChange} focus="true" error = {this.state.errors.username}></Input>
           <Input label="Password" name ='password' value ={this.state.data.password} type="password" onChange={this.handleChange} focus="false" error = {this.state.errors.password}></Input>
           <button disabled={this.validate()} className="btn btn-primary">Login</button>

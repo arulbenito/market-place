@@ -1,7 +1,6 @@
-
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
-.project{
+.placeBid{
   margin: 20px auto;
   width: 900px;
 }
@@ -19,4 +18,10 @@
 }
 .project-bid{
   margin-left: auto;
+}
+.card-text{
+  margin:10px 0px;
+}
+.price{
+  width:150px;
 }

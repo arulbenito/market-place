@@ -20,7 +20,7 @@ class App extends Component {
     return (
       <div>
         <Header className="App-header" logoSrc={logo} user = {this.state.user}></Header>
-        <Main></Main>
+        <Main user = {this.state.user}></Main>
       </div>
     );
   }

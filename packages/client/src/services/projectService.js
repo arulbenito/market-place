@@ -1,3 +1,4 @@
+import {getPriceObj} from '../services/bidingService'
 
 const projectList = [
     {   ProjectId:1,
@@ -7,7 +8,7 @@ const projectList = [
         ProjectBidRate: "$1000",
         ProjectBidEndDateTime: "Wed Dec 26 2018 23:23:23 GMT-0800 (Pacific Standard Time)",
         ProjectPostedon: "Thu Nov 29 2018 12:11:11 GMT-0800 (Pacific Standard Time)",
-        ProjectPostedBy: "Mark Peter",
+        ProjectPostedBy: "2",
         ProjectStatus: "",
         ProjectSkills: "",
         ProjectBidsReceived: "0",
@@ -21,7 +22,7 @@ const projectList = [
         ProjectBidRate: "$15000",
         ProjectBidEndDateTime: "Tue Dec 25 2018 23:23:23 GMT-0800 (Pacific Standard Time)",
         ProjectPostedon: "Mon Dec 17 2018 19:21:14 GMT-0800 (Pacific Standard Time)",
-        ProjectPostedBy: "Russel Stains",
+        ProjectPostedBy: "1",
         ProjectStatus: "",
         ProjectSkills: "",
         ProjectBidsReceived: "5",
@@ -35,7 +36,7 @@ const projectList = [
         ProjectBidRate: "$15/hr",
         ProjectBidEndDateTime: "Mon Dec 24 2018 23:23:23 GMT-0800 (Pacific Standard Time)",
         ProjectPostedon: "Sat Dec 15 2018 15:22:16 GMT-0800 (Pacific Standard Time)",
-        ProjectPostedBy: "Graham Brakebush",
+        ProjectPostedBy: "5",
         ProjectStatus: "",
         ProjectSkills: "",
         ProjectBidsReceived: "3",
@@ -49,7 +50,7 @@ const projectList = [
         ProjectBidRate: "$17500",
         ProjectBidEndDateTime: "Thu Dec 27 2018 23:23:23 GMT-0800 (Pacific Standard Time)",
         ProjectPostedon: "Fri Dec 14 2018 13:11:12 GMT-0800 (Pacific Standard Time)",
-        ProjectPostedBy: "Flint Drake",
+        ProjectPostedBy: "4",
         ProjectStatus: "",
         ProjectSkills: "",
         ProjectBidsReceived: "50",
@@ -63,7 +64,7 @@ const projectList = [
         ProjectBidRate: "$65/hr",
         ProjectBidEndDateTime: "Sun Dec 30 2018 23:23:23 GMT-0800 (Pacific Standard Time)",
         ProjectPostedon: "Thu Nov 29 2018 12:11:11 GMT-0800 (Pacific Standard Time)",
-        ProjectPostedBy: "John Sha",
+        ProjectPostedBy: "3",
         ProjectStatus: "",
         ProjectSkills: "",
         ProjectBidsReceived: "33",
@@ -77,7 +78,7 @@ const projectList = [
         ProjectBidRate: "$500",
         ProjectBidEndDateTime: "Sun Dec 30 2018 23:23:23 GMT-0800 (Pacific Standard Time)",
         ProjectPostedon: "Sat Dec 22 2018 23:23:23 GMT-0800 (Pacific Standard Time)",
-        ProjectPostedBy: "Lin chang",
+        ProjectPostedBy: "6",
         ProjectStatus: "",
         ProjectSkills: "",
         ProjectBidsReceived: "23",
@@ -103,6 +104,19 @@ export function searchProjects(keyword){
     }
 }
 
+export function searchWiningProjects(user){
+    console.log("user" + user.id)
+    if (user){
+        let filteredProjectList = projectList.filter((project) =>{
+            console.log('winner' + getPriceObj(project.ProjectId));
+            return (getPriceObj(project.ProjectId).userId == user.id)
+        })
+        return filteredProjectList;
+    } else{
+        return [];
+    }
+}
+
 export function getProject(id){
     if (id) {
         const project  = projectList.find(project => project.ProjectId === parseInt(id));;
@@ -110,4 +124,19 @@ export function getProject(id){
     } else{
         return {};
     }
+}
+
+export function addProject(project , user){
+    const projectObj = {};
+    projectObj.ProjectId = projectList.length + 1 ;
+    projectObj.ProjectTitle = project.title;
+    projectObj.ProjectDescription = project.description;
+    projectObj.ProjectBidType = project.bidType;
+    projectObj.ProjectBidEndDateTime = project.expiresOn;
+    projectObj.ProjectPostedon = new  Date();
+    projectObj.ProjectPostedBy = user.id;
+    projectObj.category = project.category;
+    projectObj.ProjectTags = project.tags;
+    projectList.push(projectObj)
+    console.log(projectObj)
 }

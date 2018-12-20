@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import Pagination from '../Pagination/Pagination';
+import {getQuote} from '../../utils/utils'
+import {getUserName} from '../../utils/utils'
+
+
 import moment from 'moment'
 
 import './Projects.css';
@@ -37,12 +41,12 @@ export default class Projects extends Component {
       <div id={this.props.id} className={this.props.className}>
       <p>{!this.props.launch && 'showing ' + projectCount + ' projects'}</p> 
         {projectsPerPage.map(project=>(
-          <div className='card' key = {this.props.projects.ProjectId}>
+          <div className='card' key = {project.ProjectId} id={project.ProjectId}>
             <div className='card-header'><a href={`/project/${project.ProjectId}`} >{project.ProjectTitle}</a></div>
             <div className='card-body'>
             
               <span className='card-text'>{project.ProjectBidType}</span> |
-              <span className='card-text'>{project.ProjectBidRate}</span> |
+              <span className='card-text'>{getQuote(project.ProjectId)}</span> |
               <span className='card-text'>Posted {moment(project.ProjectPostedon).fromNow()}</span> |
               <span className='card-text font-weight-bold'>Expires {moment(project.ProjectBidEndDateTime).fromNow()}</span> |
               <span className='card-text'>{project.ProjectBidsReceived ==='0' ? 'Be the first to Bid' : 'Bids Received : ' + project.ProjectBidsReceived}</span> |
@@ -54,7 +58,7 @@ export default class Projects extends Component {
 
             </div>
             <div className="card-footer text-muted">
-            <span className='card-text'>Posted By {project.ProjectPostedBy}</span> 
+            <span className='card-text'>Posted By {getUserName(project.ProjectPostedBy)}</span> 
             </div>
           </div>
           )
