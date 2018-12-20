@@ -13,6 +13,8 @@ export default class Account extends Component {
   componentDidMount() {
     const user = getCurrentUser();
     const data = searchWiningProjects(user);
+    console.log(user)
+
     this.setState({ projectList: data });
   }
 

@@ -1,27 +1,32 @@
 const bidList = [{
     id: 1,
     projectId: 1,
-    userId: '1',
+    userId: 1,
     price: '100'
 },
 {
     id: 2,
     projectId: 1,
-    userId: '2',
+    userId: 2,
     price: '105'
 },
 {
     id: 3,
     projectId: 1,
-    userId: '5',
+    userId: 5,
     price: '40'
 },
 {
     id: 4,
     projectId: 2,
-    userId: '2',
+    userId: 2,
     price: '60'
 }]
+
+const bidOptions = [
+    { _id: 1, name: "Hourly" },
+    { _id: 2, name: "Fixed" }
+  ]
 
 function getBidList(){
     const localBidList = JSON.parse(localStorage.getItem('bidList'));
@@ -33,6 +38,33 @@ function getBidList(){
     }
     return data
 }
+
+export function getRateType(id) {
+    console.log("id",id)
+    if (id){
+        const user = bidOptions.find(type => type._id === parseInt(id));;
+        return user?user.name:'';
+    } else {
+        return '';
+    }
+}
+
+export function bidsReceived(proId) {
+    let data = getBidList();
+    if (proId) {
+        let filteredBidList = data.filter((bid) => {
+            return (bid.projectId === parseInt(proId))
+        })
+        if (filteredBidList){
+            return filteredBidList.length
+        } else{
+            return 0
+        }
+    } else{
+        return 0
+    }
+}
+
 
 
 export function getPrice(proId) {

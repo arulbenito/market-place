@@ -4,6 +4,7 @@ import Input from '../Input/Input'
 import Form from '../Form/Form'
 import Joi from 'joi-browser'
 import { getProjectDetails } from '../../utils/utils'
+import { getCurrentUser } from '../../utils/utils'
 import { getQuote } from '../../utils/utils'
 import './PlaceBid.scss';
 
@@ -23,7 +24,8 @@ export default class PlaceBid extends Form {
   }
 
   doSubmit = async () => {
-    const status = await addBid(this.state.data.price, this.state.project.ProjectPostedBy, this.state.project.ProjectId);
+    const user = getCurrentUser();
+    const status = await addBid(this.state.data.price, user.id, this.state.project.ProjectId);
     this.setState({ posted: true });
   }
 

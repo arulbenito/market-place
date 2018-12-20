@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { getProject } from '../../services/projectService'
 import { getQuote } from '../../utils/utils'
 import { getUserName } from '../../utils/utils'
+import {getRateType,bidsReceived} from '../../services/bidingService'
 
 import moment from 'moment'
 
@@ -36,11 +37,12 @@ export default class Project extends Component {
           {(!this.props.user) && (<button className="btn btn-primary project-bid" onClick={this.loginUser}>Login/Sign Up to Place a bid</button>)}
         </div>
         <div className='card-body'>
-          <span className='card-text'>{this.state.project.ProjectBidType}</span> |
+          <span className='card-text'>{getRateType(this.state.project.ProjectBidType)}</span> |
           <span className='card-text'>{getQuote(this.state.project.ProjectId)}</span> |
           <span className='card-text'>Posted {moment(this.state.project.ProjectPostedon).fromNow()}</span> |
           <span className='card-text font-weight-bold'>Expires {moment(this.state.project.ProjectBidEndDateTime).fromNow()}</span> |
-          <span className='card-text'>{this.state.project.ProjectBidsReceived === '0' ? 'Be the first to Bid' : 'Bids Received : ' + this.state.project.ProjectBidsReceived}</span> |
+          <span className='card-text'>{bidsReceived(this.state.project.ProjectId) === 0 ? 'Be the first to Bid': 'Bids Received : ' + bidsReceived(this.state.project.ProjectId)}</span> 
+
           <p className='card-text'>{this.state.project.ProjectDescription}</p>
           <div>
             <span className='card-text text-muted'>{this.state.project.ProjectTags ? 'Tags: ' + this.state.project.ProjectTags : ''}</span>

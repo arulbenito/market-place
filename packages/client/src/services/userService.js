@@ -60,7 +60,6 @@ export function getUser(id) {
 
 export function getName(id) {
     let data = getUserList();
-    console.log(data);
     if (data){
         if (id) {
             const user = data.find(user => user.id === parseInt(id));;

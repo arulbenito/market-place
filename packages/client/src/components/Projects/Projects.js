@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Pagination from '../Pagination/Pagination';
 import { getQuote } from '../../utils/utils'
 import { getUserName } from '../../utils/utils'
+import {getRateType,bidsReceived} from '../../services/bidingService'
 
 
 import moment from 'moment'
@@ -15,7 +16,7 @@ export default class Projects extends Component {
   }
 
   state = {
-    pageSize: 2,
+    pageSize: 5,
     currentPage: 1,
     projects: this.props.projects
   }
@@ -39,11 +40,11 @@ export default class Projects extends Component {
           <div className='card' key={project.ProjectId} id={project.ProjectId}>
             <div className='card-header'><a href={`/project/${project.ProjectId}`} >{project.ProjectTitle}</a></div>
             <div className='card-body'>
-              <span className='card-text'>{project.ProjectBidType}</span> |
+              <span className='card-text'>{getRateType(project.ProjectBidType)}</span> |
               <span className='card-text'>{getQuote(project.ProjectId)}</span> |
               <span className='card-text'>Posted {moment(project.ProjectPostedon).fromNow()}</span> |
               <span className='card-text font-weight-bold'>Expires {moment(project.ProjectBidEndDateTime).fromNow()}</span> |
-              <span className='card-text'>{project.ProjectBidsReceived === '0' ? 'Be the first to Bid' : 'Bids Received : ' + project.ProjectBidsReceived}</span> |
+              <span className='card-text'>{bidsReceived(project.ProjectId) === 0 ? <a href={`/project/${project.ProjectId}`} >Be the first to Bid</a> : 'Bids Received : ' + bidsReceived(project.ProjectId)}</span> 
               <p className='card-text'>{project.ProjectDescription}</p>
               <div>
                 <span className='card-text text-muted'>{project.ProjectTags ? 'Tags: ' + project.ProjectTags : ''}</span>
