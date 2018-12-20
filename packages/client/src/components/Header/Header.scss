@@ -17,3 +17,12 @@
   width: 65px;
   margin: 10px;
 }
+@media only screen and (max-width: 600px) {
+  .header h5{
+    display:none;
+  }
+  .header-content {
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+}

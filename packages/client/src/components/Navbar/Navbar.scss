@@ -29,3 +29,8 @@
   color:#FFF;
   transition: color 0.12s ease-out 0s;
 }
+@media only screen and (max-width: 600px) {
+ .Navbar{
+    margin: 30px;
+  }
+}

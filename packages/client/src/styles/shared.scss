@@ -1,9 +1,17 @@
 .page{
-    width: 60%;
+    width: 80%;
     max-width: 900px;
     margin: 30px auto;
 }
 .form{
-    width: 50%;
+    width: 60%;
     margin: auto;
 }
+@media only screen and (max-width: 600px) {
+    .form{
+        width: 90%;
+    }
+    .page{
+        width: 90%;
+    }
+  }
